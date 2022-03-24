@@ -18,3 +18,4 @@ Bon courage !
 ## Rappels
 
 On ne dépose pas les identifiants de la base SQL ou du serveur FTP sur GitHub !
+Les images seront remplacées mais on peut tester pour commencer avec ces images.
