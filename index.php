@@ -162,5 +162,6 @@ $sql_images= "SELECT * FROM concours ORDER BY RAND() LIMIT 0,9 ;";
 	echo "</div>";
 ?>
 </form>
-</body>
+</div>
+</div></body>
 </html>
