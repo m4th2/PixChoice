@@ -1,30 +1,26 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Concours</title>
-        <meta charset="utf-8" />
-		
+        <title>PixChoice.nsi.xyz</title>
+        <meta charset="utf-8" />		
     </head>
 
 <style>
 body{
-	
+	background-color:#424242;
 	background-image:url(motif.png);
 	font-family: Verdana, sans-serif;
+	color: #FFFFFF;
 }
 .page{
-	background-color:#f9f9f9;
-	margin:1em;
-	padding:1em;
-	box-shadow: 10px 10px 5px 5px rgba(0, 0, 0, 0.2);
-	border-radius:2em;
+	background-color:#424242;
+	margin:0.42em;
+	padding:0.42em;
 }
 .contenu{
-	background-color:#f0f0f0;
-	margin:0em 0.25em 1em 0.25em;
-	padding: 0.5em 1em;
-	border-radius:1em;
-	box-shadow: 5px 5px 2px 2px rgba(0, 0, 0, 0.2);
+	background-color:#424242;
+	margin:0.42em;
+	padding: 0.42em;
 }
 .container {
   display: flex;
@@ -33,9 +29,9 @@ body{
   justify-content:space-between;
 
 }
+	
 @media (orientation:portrait){
-	.item{
-  
+	.item{  
 	  width:30%;
 	  flex-flow: row wrap;
 	  align-items: center;
@@ -44,9 +40,8 @@ body{
 }
 
 @media (orientation:landscape){
-	.item{
-  
-	  width:19%;
+	.item{  
+	  width:24%;
 	  flex-flow: row wrap;
 	  align-items: center;
 	  object-fit: contain;
@@ -73,7 +68,7 @@ body{
 }
 
 img{
-	width:100%;
+	width:320px;
 }
 /* HIDE RADIO */
 [type=radio] { 
@@ -94,7 +89,19 @@ img{
 }
 button {
 	width:100%;
+	background-color:#424242;
+	padding : 8px;
+	margin : 0px;
+	border-style: none;
 }
+button:hover {
+	width:100%;
+	background-color:#424242;
+	padding : 0px;
+	margin : 0px;
+	border-style: none;
+}	
+	
 </style>
 <body>
 <?php
@@ -175,31 +182,5 @@ $sql_images= "SELECT * FROM concours ORDER BY RAND() LIMIT 0,9 ;";
 	echo "</div>";
 ?>
 </form>
-<script>
-//document.addEventListener("load",dimensionnement_boutons());
-var horloge = window.setInterval('dimensionnement_boutons();' , 100);
-function dimensionnement_boutons(){
-	images=document.getElementsByClassName("redim");
-	for (var i=0;i<images.length;i++){
-		images[i].style.height=images[i].offsetWidth+"px";
-	}
-}
-</script>
-<script>
-votes=<?php echo $deja_vote?>;
-if (votes<20){
-	document.getElementById("ane").style.right="10%";
-	document.getElementById("carotte").style.right=(60-votes*2)+"%";
-	
-}
-else{
-	document.getElementById("ane").style.display="none";
-	document.getElementById("carotte").style.display="none";
-	document.getElementById("final").style.display="block";
-	
-	
-}
-
-</script>
 </body>
 </html>
