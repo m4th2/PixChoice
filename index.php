@@ -68,7 +68,6 @@ img{
 [type=radio]:checked + img {
   outline: 2px solid #f00;
 }
-
 button {
 	width:100%;
 	background-color:#424242;
@@ -94,7 +93,7 @@ $dbh = new PDO($dsn, $identifiant, $mdp) or die("Pb de connexion !");
 $deja_vote=0;
 if (!empty ($_POST)){
 	if (array_key_exists('test', $_POST)){
-		if (strlen($_POST['test'])==7){
+		if (strlen($_POST['test'])==9){
 			$ajout="UPDATE concours
 				SET nb_votes = nb_votes+1
 				WHERE image = '".$_POST['test']."'";
@@ -163,6 +162,5 @@ $sql_images= "SELECT * FROM concours ORDER BY RAND() LIMIT 0,9 ;";
 	echo "</div>";
 ?>
 </form>
-</div></div>
 </body>
 </html>
