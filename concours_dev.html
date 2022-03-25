@@ -17,8 +17,7 @@ body{
 	padding:0.42em;
 }
 .contenu{
-	margin:0.42em;
-	padding: 0.42em;
+	padding: 0;
 }
 .container {
   display: flex;
@@ -28,28 +27,42 @@ body{
 
 }
 
-
-@media (orientation:portrait){
-	.item{
-		width:30%;
+.item{
 		flex-flow: row wrap;
 		align-items: center;
 		object-fit: contain;
+	}
+
+@media (orientation:portrait){
+	.item{  
+	  width:48%;
 	}
 }
 
 @media (orientation:landscape){
-	.item{
-		width:24%;
-		flex-flow: row wrap;
-		align-items: center;
-		object-fit: contain;
+	.item{  
+	  width:32%;
 	}
 }
 
+@media only screen and (max-width: 960px){
+	.item{  
+	  width:48%;
+	}
+}
+
+
+
 img{
 	width :320px;
+	padding: 4px;
 }
+
+img:hover{
+	background-color: #ffb531;
+	transition: all 0.42s ease-out;
+}
+
 
 
 /* HIDE RADIO */
@@ -73,17 +86,11 @@ img{
 button {
 	width:100%;
 	background-color:#424242;
-	padding : 8px;
+	padding : 0px;
 	margin : 0px;
 	border-style: none;
-	transition: all 0.42s ease-out;
-
 }
 
-button:hover {
-	padding : 0px;
-	transition: all 0.42s ease-out;
-}
 
 </style></head>
 
@@ -137,55 +144,11 @@ Après chaque vote, 12 nouvelles images apparaissent, il est donc possible de vo
 				<button class="redim" type="submit">
 				<img class="image" src="./images/050.png">
 				</button>
-				
-			</label><label class="item">
-				<input type="radio" name="test" value="054.png" checked="">
-				<button class="redim" type="submit">
-				<img class="image" src="./images/054.png">
-				</button>
-				
-			</label><label class="item">
-				<input type="radio" name="test" value="004.png" checked="">
-				<button class="redim" type="submit">
-				<img class="image" src="./images/004.png">
-				</button>
-				
-			</label><label class="item">
-				<input type="radio" name="test" value="036.png" checked="">
-				<button class="redim" type="submit">
-				<img class="image" src="./images/036.png">
-				</button>
 
-			</label><label class="item">
-				<input type="radio" name="test" value="036.png" checked="">
-				<button class="redim" type="submit">
-				<img class="image" src="./images/036.png">
-				</button>
-				
-			</label><label class="item">
-				<input type="radio" name="test" value="036.png" checked="">
-				<button class="redim" type="submit">
-				<img class="image" src="./images/036.png">
-				</button>
-
-			</label><label class="item">
-				<input type="radio" name="test" value="036.png" checked="">
-				<button class="redim" type="submit">
-				<img class="image" src="./images/036.png">
-				</button>
 
 
 			</label><input name="deja_vote" type="hidden" value="1"></div></form>
-<script>
-//document.addEventListener("load",dimensionnement_boutons());
-var horloge = window.setInterval('dimensionnement_boutons();' , 100);
-function dimensionnement_boutons(){
-	images=document.getElementsByClassName("redim");
-	for (var i=0;i<images.length;i++){
-		images[i].style.height=images[i].offsetWidth+"px";
-	}
-}
-</script>
+
 <script>
 votes=0;
 
