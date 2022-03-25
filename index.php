@@ -13,12 +13,10 @@ body{
 	color: #FFFFFF;
 }
 .page{
-	background-color:#424242;
 	margin:0.42em;
 	padding:0.42em;
 }
 .contenu{
-	background-color:#424242;
 	margin:0.42em;
 	padding: 0.42em;
 }
@@ -29,7 +27,10 @@ body{
   justify-content:space-between;
 
 }
-	
+
+/* Optimisation à faire ici, tel, tablette, ordi... */	
+/* Typical Device Breakpoints	https://www.w3schools.com/css/css_rwd_mediaqueries.asp */	
+		
 @media (orientation:portrait){
 	.item{  
 	  width:30%;
@@ -46,25 +47,6 @@ body{
 	  align-items: center;
 	  object-fit: contain;
 	}
-}
-.fun{
-	height:20%;
-	max-height:100px;
-	min-height:20px;
-}
-#ane{
-	position:absolute;
-	top:0%;
-}
-#carotte{
-	position:absolute;
-	top:0%;
-}
-#final{
-	position:absolute;
-	top:0%;
-	right:10%;
-	display:none;
 }
 
 img{
@@ -93,13 +75,12 @@ button {
 	padding : 8px;
 	margin : 0px;
 	border-style: none;
+	transition: all 0.42s ease-out;
+
 }
 button:hover {
-	width:100%;
-	background-color:#424242;
 	padding : 0px;
-	margin : 0px;
-	border-style: none;
+	transition: all 0.42s ease-out;
 }	
 	
 </style>
