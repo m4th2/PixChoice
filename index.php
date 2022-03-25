@@ -132,7 +132,7 @@ foreach($votes_actuel as $enr){
 
 
 <?php
-$sql_images= "SELECT * FROM concours ORDER BY RAND() LIMIT 0,9 ;";
+$sql_images= "SELECT * FROM concours ORDER BY RAND() LIMIT 0,6 ;";
 
 	$sth = $dbh->prepare($sql_images);
 	$sth->execute();
