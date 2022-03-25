@@ -8,7 +8,6 @@
 <style>
 body{
 	background-color:#424242;
-	background-image:url(motif.png);
 	font-family: Verdana, sans-serif;
 	color: #FFFFFF;
 }
@@ -113,13 +112,13 @@ $sth->execute();
 $votes_actuel = $sth->fetchAll();
 ?>
 <div class="page">
-<div id="ane"><img src="ane.png" class="fun"></div>
-<div id="carotte"><img src="carotte.png" class="fun"></div>
-<div id="final"><img src="final.png" class="fun"></div>
-<div style="float:left;width:auto;"><h3>Votez pour le plus beau graphique !</h3>
-A chaque tour, choisissez l'image qui vous plaît le plus parmi les 9 présentes.<br>
-Elles vous sont proposées aléatoirement et à chaque clic, 9 autres apparaissent.<br>
-Bon vote !</div>
+<div style="float:left;width:auto;"><h2>Les mathématiques sont belles, 3ème ed. 2022</h2>
+Les élèves de 2nde5 et 2nde7 du lycée Louis Pasteur d'Avignon ont produit 55 images uniques sur leur calculatrice.<br>
+Ils pouvaient construire cette image en utilisant l'application "Fonctions" ou l'application "Python" de la NumWorks<br>
+Vous pouvez voter pour vos images favorites !<br>
+A chaque tour, choisissez l'image qui vous plaît le plus parmi les 12 présentés aléatoirement.<br>
+Après chaque vote, 12 nouvelles images apparaissent, il est donc possible de voter 42 fois.
+</div>
 <div style="float:right;width:auto;">Nombre de votes : <?php 
 foreach($votes_actuel as $enr){
 	foreach ($enr as $r){
