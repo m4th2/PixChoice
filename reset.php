@@ -8,9 +8,6 @@ if ($mysqli->connect_errno) {
     echo "Échec lors de la connexion à MySQL  : (" . $mysqli->connect_errno . ") " . $mysqli->connect_error;
 }
 
-/* ce code ne semble pas marcher en ligne (mais il tourne en local, il produit une erreur. reset.php remplira donc juste la base de données avec les noms des images.
-La table sera elle créée artisanalement via phpmyadmin oO
-
 if (!$mysqli->query("DROP TABLE IF EXISTS concours")) {
 		echo "Échec lors de la suppression de la table : (" . $mysqli->errno . ") " . $mysqli->error;
 	}
@@ -30,12 +27,10 @@ if (!$mysqli->query("ALTER TABLE concours
   MODIFY clé int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1;")){
 	  echo "Échec lors de l'ajout de l'option d'auto-incrémentation : (" . $mysqli->errno . ") " . $mysqli->error;
   }
- */
 
-
-$extensionsAffichees=array("jpg");
+$extensionsAffichees=array("png");
 $fichiers=array(); 
-foreach (new DirectoryIterator('../concours/images') as $fileInfo) {
+foreach (new DirectoryIterator('./images') as $fileInfo) {
     if(!$fileInfo->isDot()) {
 		$nom=$fileInfo->getFilename();
 		$extension=substr($nom,-3);
