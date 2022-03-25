@@ -7,8 +7,10 @@
 
 <style>
 body{
+	
 	background-color:#424242;
 	font-family: Verdana, sans-serif;
+	font-size: medium;
 	color: #FFFFFF;
 }
 .page{
@@ -16,8 +18,7 @@ body{
 	padding:0.42em;
 }
 .contenu{
-	margin:0.42em;
-	padding: 0.42em;
+	padding: 0;
 }
 .container {
   display: flex;
@@ -27,30 +28,44 @@ body{
 
 }
 
-/* Optimisation à faire ici, tel, tablette, ordi... */	
-/* Typical Device Breakpoints	https://www.w3schools.com/css/css_rwd_mediaqueries.asp */	
-		
+.item{
+		flex-flow: row wrap;
+		align-items: center;
+		object-fit: contain;
+	}
+
 @media (orientation:portrait){
 	.item{  
-	  width:30%;
-	  flex-flow: row wrap;
-	  align-items: center;
-	  object-fit: contain;
+	  width:48%;
 	}
 }
 
 @media (orientation:landscape){
 	.item{  
-	  width:24%;
-	  flex-flow: row wrap;
-	  align-items: center;
-	  object-fit: contain;
+	  width:32%;
 	}
 }
 
-img{
-	width:320px;
+@media only screen and (max-width: 960px){
+	.item{  
+	  width:48%;
+	}
 }
+
+
+
+img{
+	width :320px;
+	padding: 4px;
+}
+
+img:hover{
+	background-color: #ffb531;
+	transition: all 0.42s ease-out;
+}
+
+
+
 /* HIDE RADIO */
 [type=radio] { 
   position: absolute;
@@ -61,28 +76,22 @@ img{
 
 /* IMAGE STYLES */
 [type=radio] + img {
-  cursor: pointer;
+	cursor: pointer;
 }
 
 /* CHECKED STYLES */
 [type=radio]:checked + img {
   outline: 2px solid #f00;
 }
+
 button {
 	width:100%;
 	background-color:#424242;
-	padding : 8px;
+	padding : 0px;
 	margin : 0px;
 	border-style: none;
-	transition: all 0.42s ease-out;
-
 }
-button:hover {
-	padding : 0px;
-	transition: all 0.42s ease-out;
-}	
-	
-</style>
+</style></head>	
 <body>
 <?php
 include "config.php";
