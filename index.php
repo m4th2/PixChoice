@@ -93,7 +93,7 @@ $dbh = new PDO($dsn, $identifiant, $mdp) or die("Pb de connexion !");
 $deja_vote=0;
 if (!empty ($_POST)){
 	if (array_key_exists('test', $_POST)){
-		if (strlen($_POST['test'])==9){
+		if (strlen($_POST['test'])==7){
 			$ajout="UPDATE concours
 				SET nb_votes = nb_votes+1
 				WHERE image = '".$_POST['test']."'";
