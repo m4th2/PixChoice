@@ -159,19 +159,17 @@ $sql_images= "SELECT * FROM concours ORDER BY RAND() LIMIT 0,6 ;";
 		$sth->execute();
 		$result_ajout = $sth->fetchAll();
 		
-		echo '<label class="item">
-				<input type="radio" name="test" value="'.$enr['image'].'" checked>
-				<button  class="redim" type="submit">
-				<img class="image" src="images/'.$enr['image'].'">
-				</button>
-				
-			</label>';
-		/*echo "<img src='images/".$enr['image']."' class='item'></img> 
-		";*/
+        echo <<< HTML
+		<input type="radio" name="test" value="{$enr['image']}" id="{$enr['image']}" onclick="this.form.submit()">
+		<label class="item" for="{$enr['image']}">
+			<img class="image" src="images/{$enr['image']}" alt="">
+			</label>
+		HTML;
 	}
 	echo "<input name='deja_vote' type='hidden' value='".($deja_vote+1)."'>";
 	echo "</div>";
 ?>
 </form>
-</div></div></body>
+</div></div>
+</body>
 </html>

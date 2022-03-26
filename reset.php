@@ -13,18 +13,18 @@ if (!$mysqli->query("DROP TABLE IF EXISTS concours")) {
 	}
 if (!$mysqli->query("CREATE TABLE concours (
   image varchar(10) DEFAULT NULL COMMENT 'nom du fichier',
-  clé int(11) NOT NULL,
+  id int(11) NOT NULL,
   nb_votes int(11) DEFAULT 0,
   nb_fois int(11) DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;")) {
 		echo "Échec lors de la création de la table : (" . $mysqli->errno . ") " . $mysqli->error;
 	}
 if (!$mysqli->query("ALTER TABLE concours
-  ADD PRIMARY KEY (clé);")){
+  ADD PRIMARY KEY (id);")){
 	  echo "Échec lors de l'ajout de la clé primaire : (" . $mysqli->errno . ") " . $mysqli->error;
   }
 if (!$mysqli->query("ALTER TABLE concours
-  MODIFY clé int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1;")){
+  MODIFY id int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1;")){
 	  echo "Échec lors de l'ajout de l'option d'auto-incrémentation : (" . $mysqli->errno . ") " . $mysqli->error;
   }
 
