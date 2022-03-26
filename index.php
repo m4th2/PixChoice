@@ -1,175 +1,109 @@
 <!DOCTYPE html>
 <html>
-<head>
-    <title>PixChoice.nsi.xyz</title><meta charset="utf-8" />
-<style>
-body{
+    <head>
+        <title>PixChoice.nsi.xyz</title>
 
-	background-color:#424242;
-	font-family: Verdana, sans-serif;
-	font-size: medium;
-	color: #FFFFFF;
-}
-.page{
-	margin:0.42em;
-	padding:0.42em;
-}
-.contenu{
-	padding: 0;
-}
-.container {
-  display: flex;
-  flex-wrap:wrap;
-  width:100%;
-  justify-content:space-between;
+        <!-- META VERSE -->
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-}
-
-.item{
-		flex-flow: row wrap;
-		align-items: center;
-		object-fit: contain;
-	}
-
-@media (orientation:portrait){
-	.item{
-	  width:48%;
-	}
-}
-
-@media (orientation:landscape){
-	.item{
-	  width:32%;
-	}
-}
-
-@media only screen and (max-width: 960px){
-	.item{
-	  width:48%;
-	}
-}
+        <!-- OG CARD -->
+        <!--
+            J'ai mis des trucs au pif, faudra le mettre à jour à la fin pour le site.    
+        -->
+        <meta property="og:title" content="PixChoice.nsi.xyz">
+        <meta property="og:type" content="website">
+        <meta property="og:url" content="https://nsi.xyz">
+        <meta property="og:image" content="INSERT URL HERE">
+        <meta property="og:description" content="Venez votez pour vos images favorites ! Réalisé par des élèves de 2nde du lycée Louis Pasteur Avignon">
+        <meta property="og:site_name" content="nsi.xyz">
+        
+        <!-- LINKS -->
+        <link rel="stylesheet" href="stylesheets/main_style.css">
+    </head>
 
 
+    <body>
+        <?php
+            // Include IDs for PDO connexion
+            include("config.php");
 
-img{
-	width :320px;
-	padding: 4px;
-}
+            // Create PDO
+            $dsn = 'mysql:host=' . substr($adresse, 1000, -5) . ';dbname=' . $database . ';charset=UTF8';
+            $dbh = new PDO($dsn, $identifiant, $mdp) or die("Pb de connexion !");
 
-img:hover{
-	background-color: #ffb531;
-	transition: all 0.42s ease-out;
-}
+            // Do we have to post a vote ?
+            $deja_vote = 0;
+            if (!empty($_POST)){
+                if (isset($_POST["nom_image"])){
+                    if (strlen($_POST["nom_image"]) == 7){
+                        // Vote for a given image (image in $_POST)
+                        $ajout="UPDATE concours
+                            SET nb_votes = nb_votes + 1
+                            WHERE image = '" . $_POST["nom_image"] . "'";
 
+                        $sth = $dbh -> prepare($ajout);
+                        $sth -> execute();
+                    }
+                }
+                $deja_vote = intval($_POST['deja_vote']);  
+            }
 
+            // Get number of votes
+            $votes = "SELECT SUM(nb_votes) as result FROM concours";
+            $sth = $dbh -> prepare($votes);
+            $sth -> execute();
+            $votes_actuel = $sth -> fetchAll();
+        ?>
+        
+        <header>
+            <h1>Les mathématiques sont belles, 3<sup>ème</sup> ed. 2022</h1>
+            <p>Nombre de votes : <?php echo $votes_actuel[0][0]; ?></p>
+        </header>
 
-/* HIDE RADIO */
-[type=radio] {
-  position: absolute;
-  opacity: 0;
-  width: 0;
-  height: 0;
-}
+        <article>
+            <p>Les élèves de 2nde5 et 2nde7 du lycée Louis Pasteur d'Avignon ont produit 55 images uniques sur leur calculatrice.</p>
+            <p>Ils pouvaient construire cette image en utilisant l'application "Fonctions" ou l'application "Python" de la NumWorks.</p>
+            <p>Vous pouvez voter pour vos images favorites !</p>
+            <p>A chaque tour, choisissez l'image qui vous plaît le plus parmi les 12 présentés aléatoirement.</p>
+            <p>Après chaque vote, 12 nouvelles images apparaissent, il est donc possible de voter 42 fois.</p>
+        </article>
 
-/* IMAGE STYLES */
-[type=radio] + img {
-	cursor: pointer;
-}
+        <div>
+            <form action="index.php" method="POST" class="vote">
+                <?php
+                    // Take 6 random images from database
+                    $sql_images= "SELECT * FROM concours ORDER BY RAND() LIMIT 0,6 ;";
 
-/* CHECKED STYLES */
-[type=radio]:checked + img {
-  outline: 2px solid #f00;
-}
+                    $sth = $dbh->prepare($sql_images);
+                    $sth->execute();
+                    $result_images = $sth->fetchAll();
+                        
+                    // For each image
+                    foreach ($result_images as $enr) {
+                        // Increment image occurrence number
+                        $ajout="UPDATE concours
+                            SET nb_fois = nb_fois + 1
+                            WHERE image = '" . $enr['image'] . "'";
 
-button {
-	width:100%;
-	background-color:#424242;
-	padding : 0px;
-	margin : 0px;
-	border-style: none;
-}
+                        $sth = $dbh->prepare($ajout);
+                        $sth->execute();
+                        $result_ajout = $sth->fetchAll();
 
+                        // Print HTML code for a clickable image
+                        echo "
+                        <div class='choice'>
+                            <input type='radio' name='nom_image' value='{$enr['image']}' id='{$enr['image']}' onclick='this.form.submit()'>
+                            <label class='item' for='{$enr['image']}'>
+                                <div class='lr-borders'></div>
+                                <img class='image' src='images/{$enr['image']}' alt='image {$enr['image']}'>
+                            </label>
+                        </div>";
+                    }
+                    echo "<input name='deja_vote' type='hidden' value='" . ($deja_vote + 1) . "'>";
+                ?>
+            </form>
+        </div>
 
-</style>
-</head>
-
-
-<body>
-<?php
-include "config.php";
-$dsn = 'mysql:host='.substr($adresse, 1000, -5).';dbname='.$database.';charset=UTF8';
-
-$dbh = new PDO($dsn, $identifiant, $mdp) or die("Pb de connexion !");
-//on commence par regarder si on a reçu un ordre de vote :
-$deja_vote=0;
-if (!empty ($_POST)){
-	if (array_key_exists('test', $_POST)){
-		if (strlen($_POST['test'])==7){
-			$ajout="UPDATE concours
-				SET nb_votes = nb_votes+1
-				WHERE image = '".$_POST['test']."'";
-				$sth = $dbh->prepare($ajout);
-				$sth->execute();
-				$result_ajout = $sth->fetchAll();
-		}
-		
-	}
-	$deja_vote=intval($_POST['deja_vote']);
-		
-}
-$votes="SELECT SUM(nb_votes) as result FROM concours";
-$sth = $dbh->prepare($votes);
-$sth->execute();
-$votes_actuel = $sth->fetchAll();
-?>
-<div class="page">
-<div style="float:left;width:auto;"><h2>Les mathématiques sont belles, 3ème ed. 2022</h2>
-Les élèves de 2nde5 et 2nde7 du lycée Louis Pasteur d'Avignon ont produit 55 images uniques sur leur calculatrice.<br>
-Ils pouvaient construire cette image en utilisant l'application "Fonctions" ou l'application "Python" de la NumWorks<br>
-Vous pouvez voter pour vos images favorites !<br>
-A chaque tour, choisissez l'image qui vous plaît le plus parmi les 12 présentés aléatoirement.<br>
-Après chaque vote, 12 nouvelles images apparaissent, il est donc possible de voter 42 fois.
-</div>
-<div style="float:right;width:auto;">Nombre de votes : <?php 
-foreach($votes_actuel as $enr){
-	foreach ($enr as $r){
-		echo $r;
-		break;
-	}
-}
-?></div>
-<div style="clear:both;">
-<form action="index.php" method="POST" class="contenu">
-
-
-<?php
-$sql_images= "SELECT * FROM concours ORDER BY RAND() LIMIT 0,6 ;";
-
-	$sth = $dbh->prepare($sql_images);
-	$sth->execute();
-	$result_images = $sth->fetchAll();
-	
-	echo "<div class='container'>";
-	foreach ($result_images as $enr) {
-		
-		$ajout="UPDATE concours
-		SET nb_fois = nb_fois+1
-		WHERE image = '".$enr['image']."'";
-		$sth = $dbh->prepare($ajout);
-		$sth->execute();
-		$result_ajout = $sth->fetchAll();
-		
-        echo <<< HTML
-		<input type="radio" name="test" value="{$enr['image']}" id="{$enr['image']}" onclick="this.form.submit()">
-		<label class="item" for="{$enr['image']}">
-			<img class="image" src="images/{$enr['image']}" alt="">
-			</label>
-		HTML;
-	}
-	echo "<input name='deja_vote' type='hidden' value='".($deja_vote+1)."'>";
-	echo "</div>";
-?>
-</form>
-</div></div>
-</body>
+    </body>
 </html>
