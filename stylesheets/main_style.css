@@ -55,6 +55,7 @@ header::before {
 
 h1 {
     font-family: Roboto Slab, serif;
+    font-size: 1.75em;
 }
 
 /***** END OF HEADER *****/
