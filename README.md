@@ -17,5 +17,6 @@ Bon courage !
 
 ## Rappels
 
-On ne dépose pas les identifiants de la base SQL ou du serveur FTP sur GitHub !
-Les images seront remplacées mais on peut tester pour commencer avec ces images.
+- On ne dépose pas les identifiants de la base SQL ou du serveur FTP sur GitHub !
+- Le fichier reset.php ne doit pas être sur le serveur en production, sinon n'importe qui peut effacer les votes.
+
