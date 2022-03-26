@@ -45,20 +45,39 @@
                         $sth = $dbh -> prepare($ajout);
                         $sth -> execute();
                     }
+
+                    // Add fellow to votelist
+                    $votant_query = "SELECT ip FROM votant";
+                    $sth = $dbh -> prepare($votant_query);
+                    $sth -> execute();
+                    $votant = $sth -> fetchAll();
+
+                    $current_ip = $_SERVER["REMOTE_ADDR"];
+
+                    if (!in_array($current_ip, $votant)) {
+                        $add_votant_query = "INSERT INTO votant VALUES (?)";
+                        $sth = $dbh -> prepare($add_votant_query);
+                        $sth -> execute(array($current_ip));
+                    }
                 }
-                $deja_vote = intval($_POST['deja_vote']);  
+                $deja_vote = intval($_POST['deja_vote']);
             }
 
-            // Get number of votes
+            // Get number of votes and people
             $votes = "SELECT SUM(nb_votes) as result FROM concours";
             $sth = $dbh -> prepare($votes);
             $sth -> execute();
             $votes_actuel = $sth -> fetchAll();
+
+            $people = "SELECT COUNT(ip) FROM votant";
+            $sth = $dbh -> prepare($people);
+            $sth -> execute();
+            $people_actuel = $sth -> fetchAll();
         ?>
         
         <header>
             <h1>Les mathématiques sont belles, 3<sup>ème</sup> ed. 2022</h1>
-            <p>Nombre de votes : <?php echo $votes_actuel[0][0]; ?></p>
+            <p>Votes : <?php echo $votes_actuel[0][0]; ?> | Votants : <?php echo $people_actuel[0][0]; ?></p>
         </header>
 
         <article>
