@@ -59,9 +59,6 @@
                         $sth = $dbh -> prepare($add_votant_query);
                         $sth -> execute(array($current_ip));
                     }
-
-                    header("Location: index.php");
-                    exit();
                 }
                 $deja_vote = intval($_POST['deja_vote']);
             }
@@ -127,5 +124,10 @@
             </form>
         </div>
 
+        <script>
+            if (window.history.replaceState) {
+                window.history.replaceState(null, null, window.location.href);
+            }
+        </script>
     </body>
 </html>
