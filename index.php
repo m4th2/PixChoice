@@ -1,3 +1,5 @@
+<?php session_start(); ?>
+
 <!DOCTYPE html>
 <html>
     <head>
@@ -35,16 +37,14 @@
             // Do we have to post a vote ?
             $deja_vote = 0;
             if (!empty($_POST)){
-                if (isset($_POST["nom_image"])){
-                    if (strlen($_POST["nom_image"]) == 7){
-                        // Vote for a given image (image in $_POST)
-                        $ajout="UPDATE concours
-                            SET nb_votes = nb_votes + 1
-                            WHERE image = '" . $_POST["nom_image"] . "'";
+                if (isset($_POST["nom_image"]) && strlen($_POST["nom_image"]) == 7){
+                    // Vote for a given image (image in $_POST)
+                    $ajout="UPDATE concours
+                        SET nb_votes = nb_votes + 1
+                        WHERE image = '" . $_POST["nom_image"] . "'";
 
-                        $sth = $dbh -> prepare($ajout);
-                        $sth -> execute();
-                    }
+                    $sth = $dbh -> prepare($ajout);
+                    $sth -> execute();
 
                     // Add fellow to votelist
                     $votant_query = "SELECT ip FROM votant";
@@ -58,6 +58,17 @@
                         $add_votant_query = "INSERT INTO votant VALUES (?)";
                         $sth = $dbh -> prepare($add_votant_query);
                         $sth -> execute(array($current_ip));
+                    }
+
+                    foreach ($_SESSION["last_seen"] as $enr) {
+                        // Increment image occurrence number
+                        $ajout="UPDATE concours
+                            SET nb_fois = nb_fois + 1
+                            WHERE image = '" . $enr['image'] . "'";
+
+                        $sth = $dbh->prepare($ajout);
+                        $sth->execute();
+                        $result_ajout = $sth->fetchAll();
                     }
                 }
                 $deja_vote = intval($_POST['deja_vote']);
@@ -97,17 +108,12 @@
                     $sth = $dbh->prepare($sql_images);
                     $sth->execute();
                     $result_images = $sth->fetchAll();
+
+                    $images_ids = array();
                         
                     // For each image
                     foreach ($result_images as $enr) {
-                        // Increment image occurrence number
-                        $ajout="UPDATE concours
-                            SET nb_fois = nb_fois + 1
-                            WHERE image = '" . $enr['image'] . "'";
-
-                        $sth = $dbh->prepare($ajout);
-                        $sth->execute();
-                        $result_ajout = $sth->fetchAll();
+                        $images_id[] = $enr["id"];
 
                         // Print HTML code for a clickable image
                         echo "
@@ -120,6 +126,8 @@
                         </div>";
                     }
                     echo "<input name='deja_vote' type='hidden' value='" . ($deja_vote + 1) . "'>";
+
+                    $_SESSION["last_seen"] = $images_id;
                 ?>
             </form>
         </div>
