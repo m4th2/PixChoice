@@ -64,7 +64,7 @@
                         // Increment image occurrence number
                         $ajout="UPDATE concours
                             SET nb_fois = nb_fois + 1
-                            WHERE image = '" . $enr['image'] . "'";
+                            WHERE id = '" . $enr . "'";
 
                         $sth = $dbh->prepare($ajout);
                         $sth->execute();
