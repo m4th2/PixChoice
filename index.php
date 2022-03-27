@@ -17,7 +17,7 @@
         <meta property="og:type" content="website">
         <meta property="og:url" content="https://pixchoice.nsi.xyz">
         <meta property="og:image" content="https://pixchoice.nsi.xyz/icon.jpg">
-        <meta property="og:description" content="Venez votez pour vos images favorites ! Réalisé par des élèves de 2nde du lycée Louis Pasteur Avignon">
+        <meta property="og:description" content="Venez votez pour vos images favorites ! Réalisées par des élèves de 2nde du lycée Louis Pasteur Avignon">
         <meta property="og:site_name" content="nsi.xyz">
         
         <!-- LINKS -->
@@ -94,8 +94,8 @@
 
         <article>
             <p>Les élèves de en classe de seconde 5 et 7 du lycée Louis Pasteur d'Avignon ont produit 55 images uniques sur leur calculatrice NumWorks.</p>
-            <p>Vous pouvez : <b>voter pour vos images favorites,</b> ou <a href="https://twitter.com/nsi_xyz/status/1507684348820082690">Découvrir une sélection de 42 images</a></p> 
-            <p>6 images vous sont présentées aléatoirement, vous en choissisez une, il est possible de voter plusieurs fois.</p>
+            <p>Vous pouvez : <b>voter pour vos images favorites,</b> ou <a href="https://twitter.com/nsi_xyz/status/1507684348820082690">découvrir une sélection de 42 images</a></p> 
+            <p>6 images vous sont présentées aléatoirement, vous en choisissez une, il est possible de voter plusieurs fois.</p>
         </article>
 
         <div>
