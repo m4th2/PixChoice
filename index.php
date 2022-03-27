@@ -13,15 +13,16 @@
         <!--
             J'ai mis des trucs au pif, faudra le mettre à jour à la fin pour le site.    
         -->
-        <meta property="og:title" content="PixChoice.nsi.xyz">
+        <meta property="og:title" content="pixchoice.nsi.xyz">
         <meta property="og:type" content="website">
-        <meta property="og:url" content="https://nsi.xyz">
-        <meta property="og:image" content="INSERT URL HERE">
+        <meta property="og:url" content="https://pixchoice.nsi.xyz">
+        <meta property="og:image" content="https://pixchoice.nsi.xyz/icon.jpg">
         <meta property="og:description" content="Venez votez pour vos images favorites ! Réalisé par des élèves de 2nde du lycée Louis Pasteur Avignon">
         <meta property="og:site_name" content="nsi.xyz">
         
         <!-- LINKS -->
         <link rel="stylesheet" href="stylesheets/main_style.css">
+        <link rel="shortcut icon" href="icon.jpg">
     </head>
 
 
