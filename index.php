@@ -1,7 +1,7 @@
 <?php session_start(); ?>
 
 <!DOCTYPE html>
-<html>
+<html lang="fr" prefix="og: http://ogp.me/ns#">
     <head>
         <title>PixChoice.nsi.xyz</title>
 
