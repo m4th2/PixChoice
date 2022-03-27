@@ -92,11 +92,9 @@
         </header>
 
         <article>
-            <p>Les élèves de 2nde5 et 2nde7 du lycée Louis Pasteur d'Avignon ont produit 55 images uniques sur leur calculatrice.</p>
-            <p>Ils pouvaient construire cette image en utilisant l'application "Fonctions" ou l'application "Python" de la NumWorks.</p>
-            <p>Vous pouvez voter pour vos images favorites !</p>
-            <p>A chaque tour, choisissez l'image qui vous plaît le plus parmi les 6 présentés aléatoirement.</p>
-            <p>Après chaque vote, 6 nouvelles images apparaissent, il est donc possible de voter 42 fois.</p>
+            <p>Les élèves de en classe de seconde 5 et 7 du lycée Louis Pasteur d'Avignon ont produit 55 images uniques sur leur calculatrice NumWorks.</p>
+            <p>Vous pouvez : <b>voter pour vos images favorites,</b> ou <a href="https://twitter.com/nsi_xyz/status/1507684348820082690">Découvrir une sélection de 42 images</a></p> 
+            <p>6 images vous sont présentées aléatoirement, vous en choissisez une, il est possible de voter plusieurs fois.</p>
         </article>
 
         <div>
