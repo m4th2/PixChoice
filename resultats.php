@@ -92,7 +92,7 @@
 
         <article>
             <p>Les élèves de en classe de seconde 5 et 7 du lycée Louis Pasteur d'Avignon ont produit 55 images uniques sur leur calculatrice NumWorks.</p>
-            <p>Vous pouviez : <b>voter pour vos images favorites,</b> mais le vote est clos. <a href="https://twitter.com/nsi_xyz/status/1507684348820082690">Découvrir une sélection de 42 images</a></p>
+            <p>Vous pouviez voter pour vos images favorites, mais le vote est clos. <a href="https://twitter.com/nsi_xyz/status/1507684348820082690">Découvrez sur twitter une sélection de 42 images</a></p>
             <p> Cette page présente le résultat du vote</p> 
         </article>
 
