@@ -150,9 +150,9 @@ for ($i = 1; $i < count($sortie); $i++) {
 <div style="float:left;width:auto;"><h2>Résultats </h2>
 Le concours a reçu <?php echo $votes_actuel[0][0];?> votes.<br>
 <p>L'image ayant reçu le plus de votes est : <?php echo $sortie[$gagnant]["image"].", avec ".$sortie[$gagnant]["nb_votes"]." votes."; ?></p>
-<img class='resultat' src='images/".$sortie[$gagnant]["image"]."'>	
+<img class='resultat' src='images/".<?php echo $sortie[$gagnant]["image"]."?>'>	
 <p>L'image ayant le plus fort taux de victoires : <?php echo $sortie[$prefere]["image"].", avec ".round($taux_max*100)."% de victoires par présentation."; ?></p>
-<img class='resultat' src='images/".$sortie[$prefere]["image"]."'>
+<img class='resultat' src='images/".<?php echo $sortie[$prefere]["image"]."?>'>
 </div>
 <div style="clear:both;">
 
