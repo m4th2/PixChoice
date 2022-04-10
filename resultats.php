@@ -153,11 +153,37 @@ Le concours a reçu <?php echo $votes_actuel[0][0];?> votes.<br>
 <img class='resultat' src='images/<?php echo $sortie[$gagnant]["image"]?>'>	
 <p>L'image ayant le plus fort taux de victoires : <?php echo $sortie[$prefere]["image"].", avec ".round($taux_max*100)."% de victoires par présentation."; ?></p>
 <img class='resultat' src='images/<?php echo $sortie[$prefere]["image"]?>'>
+</div>	
+	
+<div style="float:left;width:auto;"><h2>Le classement</h2>
+<?php
+include "config.php";
+$dsn = 'mysql:host='.substr($adresse, 1000, -5).';dbname='.$database.';charset=UTF8';
+
+$dbh = new PDO($dsn, $identifiant, $mdp) or die("Pb de connexion !");
+//on commence par regarder si on a reçu un ordre de vote :
+
+$votes="SELECT SUM(nb_votes) as result FROM concours";
+$sth = $dbh->prepare($votes);
+$sth->execute();
+$votes_actuel = $sth->fetchAll();
+
+$gagnant="select * from concours ORDER BY nb_votes";
+$sth = $dbh->prepare($gagnant);
+$sth->execute();
+$sortie = $sth->fetchAll();
+$sortie=array_reverse($sortie);
+echo "<ol>";
+foreach($sortie as $enr){
+	echo "<li>".$enr["image"]." avec ".$enr["nb_votes"]."votes<br><img class='resultat' src='images/".$enr["image"]."'></li>
+	";
+}
+echo "</ol>"
+
+
+
+?>	
 </div>
-<div style="clear:both;">
-
-
-
 
 <script>
 //document.addEventListener("load",dimensionnement_boutons());
